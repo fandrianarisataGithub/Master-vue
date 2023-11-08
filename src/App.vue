@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{ toUpperCaseMessage }}</h1>
+        <h1>{{ toUpperCaseString(message) }}</h1>
         <h1>{{ age }}</h1>
     </div>
 </template>
@@ -13,10 +13,24 @@
                 users : []
             }
         },
-        computed : { // propriété calculé
-            toUpperCaseMessage(){ 
-                return this.message.toUpperCase();
+        methods: {
+            toUpperCaseString(str){
+                return str.toUpperCase();
+            },
+            isAdult(){
+                if(this.age >= 18){
+                    return true
+                }else{
+                    return false
+                }
+            },
+            DisplayIfAdult(){
+                if(this.isAdult){
+                    alert("c'est une personne adulte")
+                }else{
+                    alert("c'est une personne mineure")
+                }
             }
-        },
+        }
     }
 </script>
