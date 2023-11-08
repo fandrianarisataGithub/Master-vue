@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{ message }}</h1>
+        <h1>{{ toUpperCaseMessage }}</h1>
         <h1>{{ age }}</h1>
     </div>
 </template>
@@ -9,8 +9,14 @@
         data(){
             return {
                 message : 'Bonjour tout le monde',
-                age : 25
+                age : 25,
+                users : []
             }
-        }
+        },
+        computed : { // propriété calculé
+            toUpperCaseMessage(){ 
+                return this.message.toUpperCase();
+            }
+        },
     }
 </script>
