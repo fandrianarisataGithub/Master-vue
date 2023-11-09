@@ -12,16 +12,33 @@
             <h1>Component global</h1>
             <ComponentA text="Voici un text via component parent"/>
         </div>
+        <div>
+            <h1>Deep props reactive</h1>
+            <input type="text" v-model="depMsg">
+        </div>
     </div>
 </template>
 <script>
+import { computed } from 'vue'
     export default {
+        // provide : {
+        //     messageApp : 'Hello from App parent',
+        //     arahaba : 'manahoana ee!!!'
+        // }, // modeo simple
         data(){
             return {
                 question : '',
                 answer : 'asio question mark ? :-) ',
                 loading : false,
-                gif : null
+                gif : null,
+                depMsg : ''
+            }
+        },
+        provide(){
+            return {
+                messageApp : 'Hello from App parent',
+                arahaba : 'manahoana ee!!!',
+                depMsg : computed(() => this.depMsg)
             }
         },
         watch : {
