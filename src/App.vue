@@ -8,6 +8,10 @@
         <div v-if="gif" class="image">
             <img :src="gif" alt="">
         </div>
+        <div>
+            <h1>Component global</h1>
+            <ComponentA text="Voici un text via component parent"/>
+        </div>
     </div>
 </template>
 <script>
