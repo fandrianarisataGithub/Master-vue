@@ -13,15 +13,22 @@
         <p>
             Le message de App : {{ depMsg }}
         </p>
+        <div>
+            <ComponentDeep2 />
+        </div>
     </div>
 </template>
 <script>
+    import ComponentDeep2 from './ComponentDeep2.vue'
     export default {
         inject : ['messageApp', 'arahaba', 'myProvideMessText2', 'depMsg'],
         data(){
             return {
                 textMalagasy : this.arahaba
             }
+        },
+        components : {
+            ComponentDeep2
         }
     }
 </script>
