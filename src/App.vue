@@ -1,24 +1,12 @@
 <template>
     <div>
-        <h1>{{ toUpperCaseString(message) }}</h1>
-        <div v-if="isAdult">
-            <h2>Cette personne est adulte car son age est : {{ age }}</h2>
+        <h1>Manontania : </h1>
+        <div>
+            <input type="text" v-model="question">
         </div>
-        <div v-else>
-            <h2>Cette personne n'est pas une adulte car son age est : {{ age }}</h2>
-        </div>
-        <div v-show="isMety">
-            <h2>Tena mety le izy</h2>
-        </div>
-        <div class="list-users">
-            <ul>
-                <li v-for="(user, i) in users" :key="i">
-                    <div>Nom : {{ user.name }}</div>
-                    <div>
-                        Connecté: {{ user.isConnected ? 'en ligne' : 'Déconnecté' }}
-                    </div>
-                </li>
-            </ul>
+        <div class="answer">{{ answer }}</div>
+        <div v-if="gif" class="image">
+            <img :src="gif" alt="">
         </div>
     </div>
 </template>
@@ -26,53 +14,36 @@
     export default {
         data(){
             return {
-                message : 'Bonjour tout le monde',
-                age : 25,
-                users : [
-                    {
-                        name : 'Fenitra',
-                        id : 1,
-                        isConnected : false
-                    },
-                    {
-                        name : 'Tojo',
-                        id : 2,
-                        isConnected : true
-                    },
-                    {
-                        name : 'Hary',
-                        id : 3,
-                        isConnected : true
-                    },
-                    {
-                        name : 'Andry Bihary',
-                        id : 4,
-                        isConnected : false
-                    }
-                ],
-                isMety : true
+                question : '',
+                answer : 'asio question mark ? :-) ',
+                loading : false,
+                gif : null
             }
         },
-        computed: {
-            isAdult(){
-                if(this.age >= 18){
-                    return true
-                }else{
-                    return false
+        watch : {
+            question(newQuestion){
+                if(newQuestion.includes('?')){
+                    this.getAnswer()
                 }
-            },
+            }
         },
         methods: {
-            toUpperCaseString(str){
-                return str.toUpperCase();
-            },
-            DisplayIfAdult(){
-                if(this.isAdult){
-                    alert("c'est une personne adulte")
-                }else{
-                    alert("c'est une personne mineure")
+            async getAnswer(){
+                this.loading = true;
+                this.answer = "Aoka aloha an ... :D";
+                try {
+                    const  res = await fetch('https://yesno.wtf/api');
+                    const _dataRes = await res.json()
+                    this.answer = _dataRes.answer
+                    this.gif = _dataRes.image
+                    
+                } catch (error) {
+                    this.answer = 'Error! tsy misy valiny yes or no'
+                } finally{
+                    this.loading = false
                 }
             }
-        }
+        },
+        
     }
 </script>
