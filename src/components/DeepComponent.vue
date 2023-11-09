@@ -13,9 +13,15 @@
         <p>
             Le message de App : {{ depMsg }}
         </p>
-        <div>
-            <ComponentDeep2 />
-        </div>
+        <ComponentDeep2 v-slot="slotProps">
+            <!-- <template #zero>
+                Tena eto le slot, data de parent : {{ textMalagasy }} (slot default)
+            </template>
+            <template #one="sesData">
+                Tena eto le slot, data de parent : {{ textMalagasy }} (slot default) , {{ sesData.x }}
+            </template> -->
+            {{ slotProps.text }}
+        </ComponentDeep2>
     </div>
 </template>
 <script>
