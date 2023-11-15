@@ -1,70 +1,42 @@
 <template>
     <div>
-        <h1>Manontania : </h1>
-        <div>
-            <input type="text" v-model="question">
-        </div>
-        <div class="answer">{{ answer }}</div>
-        <div v-if="gif" class="image">
-            <img :src="gif" alt="">
+        <h1 v-bind:style="'background: ' + bgColor">Bonjour</h1>
+        <div :class="isPrimary ? 'primary-div' : 'secondary-div'">
+            <div v-html="content"></div>
+            <img :src="url" alt="">
         </div>
         <div>
-            <h1>Component global</h1>
-            <ComponentA text="Voici un text via component parent"/>
-        </div>
-        <div>
-            <h1>Deep props reactive</h1>
-            <input type="text" v-model="depMsg">
+            <p>{{ piece  }}</p>
+            <input v-model="piece" type="text" name="" id="">
         </div>
     </div>
 </template>
 <script>
 import { computed } from 'vue'
     export default {
-        // provide : {
-        //     messageApp : 'Hello from App parent',
-        //     arahaba : 'manahoana ee!!!'
-        // }, // modeo simple
         data(){
             return {
-                question : '',
-                answer : 'asio question mark ? :-) ',
-                loading : false,
-                gif : null,
-                depMsg : ''
+                bgColor : 'red',
+                piece : '',
+                isPrimary : true,
+                url : 'https://picsum.photos/200/300',
+                content : `
+                     <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora temporibus ratio
+                ne dolores, sit vel totam quaerat eligendi vero quas rerum.
+            </p>
+                `
             }
-        },
-        provide(){
-            return {
-                messageApp : 'Hello from App parent',
-                arahaba : 'manahoana ee!!!',
-                depMsg : computed(() => this.depMsg)
-            }
-        },
-        watch : {
-            question(newQuestion){
-                if(newQuestion.includes('?')){
-                    this.getAnswer()
-                }
-            }
-        },
-        methods: {
-            async getAnswer(){
-                this.loading = true;
-                this.answer = "Aoka aloha an ... :D";
-                try {
-                    const  res = await fetch('https://yesno.wtf/api');
-                    const _dataRes = await res.json()
-                    this.answer = _dataRes.answer
-                    this.gif = _dataRes.image
-                    
-                } catch (error) {
-                    this.answer = 'Error! tsy misy valiny yes or no'
-                } finally{
-                    this.loading = false
-                }
-            }
-        },
-        
+        }
     }
 </script>
+<style>
+    .primary-div{
+        background: lightblue;
+        color: white;
+    }
+    .secondary-div{
+        color: white;
+        background: green;
+    }
+</style>
