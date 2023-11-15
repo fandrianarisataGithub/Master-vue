@@ -1,28 +1,13 @@
 <template>
-    <div>
-        <h1>{{ toUpperCaseString(message) }}</h1>
-        <div v-if="isAdult">
-            <h2>Cette personne est adulte car son age est : {{ age }}</h2>
-        </div>
-        <div v-else>
-            <h2>Cette personne n'est pas une adulte car son age est : {{ age }}</h2>
-        </div>
-        <div v-show="isMety">
-            <h2>Tena mety le izy</h2>
-        </div>
-        <div class="list-users">
-            <ul>
-                <li v-for="(user, i) in users" :key="i">
-                    <div>Nom : {{ user.name }}</div>
-                    <div>
-                        Connecté: {{ user.isConnected ? 'en ligne' : 'Déconnecté' }}
-                    </div>
-                </li>
-            </ul>
-        </div>
+    <div class="card-container">
+        <template v-for="(item, index) in blogs" :key="index">
+           <card v-bind:data-prop="item" :mp="message"/>
+        </template>
+        
     </div>
 </template>
 <script>
+    import Card from './components/Card.vue'
     export default {
         data(){
             return {
@@ -50,8 +35,43 @@
                         isConnected : false
                     }
                 ],
+                blogs : [
+                    {
+                        img : 'https://picsum.photos/400/300',
+                        url : 'https://picsum.photos/',
+                        text : `
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam,
+                                sed?
+                            </p>
+                        `
+                    },
+                    {
+                        img : 'https://picsum.photos/200/400',
+                        url : 'http://192.168.8.1/html/home.html',
+                        text : `
+                            <p>
+                               2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam,
+                                sed?
+                            </p>
+                        `
+                    },
+                    {
+                        img : 'https://picsum.photos/200/300',
+                        url : 'https://vuejs.org/guide/essentials/watchers.html',
+                        text : `
+                            <p>
+                                 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam,
+                                sed?
+                            </p>
+                        `
+                    }
+                ],
                 isMety : true
             }
+        },
+        components : {
+            'card' : Card
         },
         computed: {
             isAdult(){
@@ -76,3 +96,10 @@
         }
     }
 </script>
+<style>
+    .card-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+</style>
