@@ -26,15 +26,19 @@
 </template>
 <script>
     import ComponentDeep2 from './ComponentDeep2.vue'
+    import {useMouse} from './../assets/composables/mouse'
     export default {
         inject : ['messageApp', 'arahaba', 'myProvideMessText2', 'depMsg'],
         data(){
             return {
-                textMalagasy : this.arahaba
+                textMalagasy : this.arahaba,
+                x : 0,
+                y : 0
             }
         },
         components : {
-            ComponentDeep2
-        }
+            ComponentDeep2:ComponentDeep2
+        },
+        
     }
 </script>
