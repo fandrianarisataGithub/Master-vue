@@ -1,0 +1,7 @@
+@import 'mixins','blocs';
+body{
+    background-color: green;
+    @include responsive(992px){
+        background-color: orange;
+    }
+}

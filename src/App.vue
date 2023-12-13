@@ -1,17 +1,12 @@
 <template>
     <div>
-        <h1>Bonjour tout le monde</h1>
-        <h2>{{ message }}</h2>
-        <p>
-            la surface est : {{ surface }}
-        </p>
-        <p>
-            {{ list[1].qte }}
-        </p>
+        <Child />
     </div>
 </template>
 <script>
-    export default {
+import Child from './components/Child.vue';
+
+export default {
         data(){
             return{
                 message : "Salama tompoko ô!",
@@ -27,6 +22,9 @@
                     }
                 ]
             }
+        },
+        components : {
+            Child : Child
         }
     }
 </script>
