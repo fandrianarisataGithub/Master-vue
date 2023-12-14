@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Child />
+        <Child :text = "textData"/>
     </div>
 </template>
 <script>
@@ -20,11 +20,12 @@ export default {
                         nom : 'Banane',
                         qte : 120
                     }
-                ]
+                ],
+                textData : 'Tojo Master 1'
             }
         },
         components : {
             Child : Child
-        }
+        },
     }
 </script>
