@@ -1,30 +1,22 @@
 <template>
     <div>
-        <Child />
+        <RouterLink to="/">Home</RouterLink> |
+        <RouterLink to="/about">About</RouterLink>
+        <RouterView />
     </div>
 </template>
 <script>
-import Child from './components/Child.vue';
+import {
+  RouterLink,
+  RouterView,
+} from 'vue-router';
 
 export default {
-        data(){
-            return{
-                message : "Salama tompoko ô!",
-                surface : '100 m2',
-                list : [
-                    {
-                        nom : 'Pomme',
-                        qte : 22
-                    },
-                    {
-                        nom : 'Banane',
-                        qte : 120
-                    }
-                ]
-            }
-        },
-        components : {
-            Child : Child
-        }
-    }
+        
+}
 </script>
+<style scoped>
+    .router-link-active{
+        border : 2px solid red;
+    }
+</style>
